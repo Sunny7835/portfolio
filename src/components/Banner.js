@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import headerImg from "../assets/img/header-img.svg";
 import { ArrowRightCircle } from "react-bootstrap-icons";
@@ -10,21 +10,13 @@ export const Banner = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState("");
   const [delta, setDelta] = useState(300 - Math.random() * 100);
-  const [index, setIndex] = useState(1);
-  const toRotate = ["Software Developer"];
+
   const period = 2000;
 
-  useEffect(() => {
-    let ticker = setInterval(() => {
-      tick();
-    }, delta);
+  // Memoize the toRotate array to ensure it isn't recreated on every render
+  const toRotate = useMemo(() => ["Software Developer"], []);
 
-    return () => {
-      clearInterval(ticker);
-    };
-  }, [text]);
-
-  const tick = () => {
+  const tick = useCallback(() => {
     let i = loopNum % toRotate.length;
     let fullText = toRotate[i];
     let updatedText = isDeleting
@@ -39,22 +31,28 @@ export const Banner = () => {
 
     if (!isDeleting && updatedText === fullText) {
       setIsDeleting(true);
-      setIndex((prevIndex) => prevIndex - 1);
+      setLoopNum(loopNum + 1);
       setDelta(period);
     } else if (isDeleting && updatedText === "") {
       setIsDeleting(false);
-      setLoopNum(loopNum + 1);
-      setIndex(1);
       setDelta(500);
-    } else {
-      setIndex((prevIndex) => prevIndex + 1);
     }
-  };
+  }, [loopNum, isDeleting, text, period, toRotate]); // Added toRotate to dependencies
+
+  useEffect(() => {
+    const ticker = setInterval(() => {
+      tick();
+    }, delta);
+
+    return () => {
+      clearInterval(ticker);
+    };
+  }, [delta, tick]);
 
   return (
     <section className="banner" id="home">
       <Container>
-        <Row className="aligh-items-center">
+        <Row className="align-items-center">
           <Col xs={12} md={6} xl={7}>
             <TrackVisibility>
               {({ isVisible }) => (
@@ -75,19 +73,7 @@ export const Banner = () => {
                     </span>
                   </h1>
                   <p>
-                    With a deep interest in technology and innovation, I
-                    specialize in creating dynamic web applications, intuitive
-                    user interfaces, efficient backend systems. My goal is to
-                    solve complex problems with elegant solutions, ensuring an
-                    outstanding user experience while keeping scalability and
-                    performance in mind. I thrive on continuous learning and
-                    strive to stay updated with the latest trends and best
-                    practices in the tech industry. Whether it's collaborating
-                    on a team or working independently, I approach every project
-                    with creativity, attention to detail, and a commitment to
-                    excellence. <b>Feel free to explore my portfolio to see some of
-                    my work and get in touch for potential collaborations or
-                    projects!</b>
+                    With a deep interest in technology and innovation, I specialize in creating dynamic web applications, intuitive user interfaces, efficient backend systems. My goal is to solve complex problems with elegant solutions, ensuring an outstanding user experience while keeping scalability and performance in mind. I thrive on continuous learning and strive to stay updated with the latest trends and best practices in the tech industry. Whether it's collaborating on a team or working independently, I approach every project with creativity, attention to detail, and a commitment to excellence. <b>Feel free to explore my portfolio to see some of my work and get in touch for potential collaborations or projects!</b>
                   </p>
                   <button onClick={() => console.log("connect")}>
                     Let’s Connect <ArrowRightCircle size={25} />

@@ -1,45 +1,14 @@
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
-import { ProjectCard } from "./ProjectCard";
-import projImg1 from "../assets/img/project-img1.png";
-import projImg2 from "../assets/img/project-img2.png";
-import projImg3 from "../assets/img/project-img3.png";
+// Removed the unused import of ProjectCard
+// import projImg1 from "../assets/img/project-img1.png";
+// import projImg2 from "../assets/img/project-img2.png";
+// import projImg3 from "../assets/img/project-img3.png";
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
 
 export const Projects = () => {
-  const projects = [
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg1,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg2,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg3,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg1,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg2,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg3,
-    },
-  ];
+  // Removed the unused projects array
 
   return (
     <section className="project" id="projects">
@@ -77,7 +46,6 @@ export const Projects = () => {
                         isVisible ? "animate__animated animate__slideInUp" : ""
                       }
                     >
-                      
                       <Tab.Pane eventKey="first">
                         <p>
                           <b>Anonymous Chat Application</b>
@@ -86,12 +54,11 @@ export const Projects = () => {
                           allows users to communicate without revealing their
                           identities. Built to ensure privacy and security, the
                           app supports multiple chat rooms, message moderation,
-                          and secure connections.<b>For more info navigate to github.</b>
+                          and secure connections. <b>For more info navigate to github.</b>
                         </p>
                       </Tab.Pane>
                       <Tab.Pane eventKey="second">
                         <p>
-                          {" "}
                           <h3>Bill Management System</h3>
                           <strong>Overview:</strong> A desktop app built with
                           Python, Tkinter, and SQLite3 to help users manage and
@@ -99,7 +66,7 @@ export const Projects = () => {
                         </p>
                       </Tab.Pane>
                       <Tab.Pane eventKey="third">
-
+                        {/* You can uncomment and use the Row below if you intend to display the projects */}
                         {/* <Row>
                           {projects.map((project, index) => {
                             return <ProjectCard key={index} {...project} />;
@@ -114,7 +81,7 @@ export const Projects = () => {
           </Col>
         </Row>
       </Container>
-      <img className="background-image-right" src={colorSharp2}></img>
+      <img className="background-image-right" src={colorSharp2} alt="Background Design" />
     </section>
   );
 };

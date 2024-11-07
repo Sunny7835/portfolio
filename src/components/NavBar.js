@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo from "../assets/img/portfolio.png";
 import navIconLinkedIn from "../assets/img/nav-icon1.svg";
-import navIconFB from "../assets/img/nav-icon2.svg";
-import navIconInsta from "../assets/img/nav-icon3.svg";
+// import navIconFB from "../assets/img/nav-icon2.svg";
+// import navIconInsta from "../assets/img/nav-icon3.svg";
 import navIconGit from "../assets/img/nav-icon-github.svg";
 
 import { HashLink } from "react-router-hash-link";
@@ -80,7 +80,7 @@ export const NavBar = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={navIconLinkedIn} alt="" />
+                  <img src={navIconLinkedIn} alt="LinkedIn" />
                 </a>
 
                 <a
@@ -88,24 +88,8 @@ export const NavBar = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={navIconGit} alt="" />
+                  <img src={navIconGit} alt="GitHub" />
                 </a>
-{/* 
-                <a
-                  href="http://linkedin.com/in/sunny-sharma-9a3982232"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={navIconFB} alt="" />
-                </a>
-
-                <a
-                  href="http://linkedin.com/in/sunny-sharma-9a3982232"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={navIconInsta} alt="" />
-                </a> */}
               </div>
               <HashLink to="#connect">
                 <button className="vvd">
